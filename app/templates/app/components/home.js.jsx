@@ -1,25 +1,19 @@
 'use strict';
 
-import React from 'react/addons';
+var Home = React.createClass({
+  getInitialState: function() {
 
-class Home extends React.Component {
-  constructor(props) {
-    super(props);
+    return { text: this.props.name };
+  },
 
-    this.state = {
-      text: 'Click Me!'
-    };
 
-    this.clickMeUpdate = this.clickMeUpdate.bind(this);
-  }
-
-  clickMeUpdate(event) {
+  clickMeUpdate: function(event) {
     this.setState({
       text: this.state.text.split('').reverse().join('')
     });
-  }
+  },
 
-  render() {
+  render: function() {
     return (
       <div className="container">
         <div className="header">
@@ -32,7 +26,7 @@ class Home extends React.Component {
         </div>
 
         <div className="jumbotron">
-          <h1>'Allo, 'Allo!</h1>
+          <h1>'Allo {this.props.name}!</h1>
           <p className="lead">Always a pleasure scaffolding your apps.</p>
           <p><a className="btn btn-lg btn-success" href="#">Splendid!</a></p>
         </div>
@@ -49,7 +43,7 @@ class Home extends React.Component {
             <p>Modernizr is an open-source JavaScript library that helps you build the next generation of HTML5 and CSS3-powered websites.</p>
 
             <h4>ReactJs</h4>
-            <h1 className='clickMe' onClick={this.clickMeUpdate}>{this.state.text}</h1>
+            <h1 className='clickMe' onClick={this.clickMeUpdate}>Hello {this.state.text}</h1>
           </div>
           <div className="col-lg-6">
             <h4>Webpack</h4>
@@ -64,6 +58,10 @@ class Home extends React.Component {
       </div>
     );
   }
+});
+
+// below activates under testing env, for react-rails it is disabled.
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = Home;
 }
 
-export default Home;

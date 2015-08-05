@@ -196,7 +196,11 @@ module.exports = yeoman.generators.Base.extend({
                  '       use_manifest: false,\n' +
                  '       asset_manifest: {},\n' +
                  '       common_manifest: {}\n' +
-                 '    }\n';
+                 '    }\n' +
+                 '    config.react.server_renderer_options = {\n' +
+                 '       files: ["react.js", "components.js", "build/main.bundle.js"], # files to load for prerendering\n' +
+                 '       replay_console: true,                 # if true, console.* will be replayed client-side\n' +
+                 '    }\n' ;
 
     if (file.indexOf(insert) === -1) {
       this.write(path, file.replace(hook, hook + insert));
@@ -228,13 +232,17 @@ module.exports = yeoman.generators.Base.extend({
                .replace("//= require jquery_ujs\n", '')
                .replace("//= require_tree .",
                         "//= require bootstrap\n" +
-                        "//= require react_ujs\n");
+                        "//= require react_ujs\n" +
+                        "//= require components\n"
+                        );
 
 
     this.write(path, file);
     this.template('app/main.js', 'app/frontend/javascripts/main.js');
-    this.template('app/home/home.js', 'app/frontend/javascripts/home/home.js');
-    this.copy('app/home/home-test.js', 'app/frontend/javascripts/home/home-test.js');
+    // this.template('app/home/home.js', 'app/frontend/javascripts/home/home.js');
+    this.copy('app/test/home-test.js', 'app/frontend/javascripts/test/home-test.js');
+    this.copy('app/components.js, app/assets/javascripts/components.js');
+    this.copy('app/components/home.js.jsx, app/assets/javascripts/components/home.js.jsx')
   },
 
   reactConfig: function() {
