@@ -6,6 +6,8 @@ var yosay = require('yosay');
 var chalk = require('chalk');
 var magenta = chalk.magenta;
 var shell = require('shelljs');
+var wiring = require('html-wiring');
+
 
 module.exports = yeoman.generators.Base.extend({
   init: function () {
@@ -102,8 +104,8 @@ module.exports = yeoman.generators.Base.extend({
     //process Gemfile
     var path   = 'tmp/yeoman/Gemfile',
         dest   = 'Gemfile',
-        file   = this.readFileAsString(dest),
-        insert = this.readFileAsString(path);
+        file   = wiring.readFileAsString(dest),
+        insert = wiring.readFileAsString(path);
 
     //modify file before insert
     file = file.replace("# Use jquery as the JavaScript library\n", '')
@@ -132,8 +134,8 @@ module.exports = yeoman.generators.Base.extend({
     //process bower
     var path   = 'tmp/yeoman/Bowerfile',
         dest   = 'Bowerfile',
-        file   = this.readFileAsString(dest),
-        insert = this.readFileAsString(path);
+        file   = wiring.readFileAsString(dest),
+        insert = wiring.readFileAsString(path);
 
     if (file.indexOf(insert) === -1) {
       this.write(dest, file + insert);
@@ -171,7 +173,7 @@ module.exports = yeoman.generators.Base.extend({
       console.log(magenta('Insert Grape API into config/routes.rb'));
       var path   = 'config/routes.rb',
       hook   = 'Rails.application.routes.draw do\n',
-      file   = this.readFileAsString(path),
+      file   = wiring.readFileAsString(path),
       insert = "  mount APIS::Base => '/api'\n";
 
       if (file.indexOf(insert) === -1) {
@@ -190,7 +192,7 @@ module.exports = yeoman.generators.Base.extend({
     //include config into config/application.rb
     var path   = 'config/application.rb',
         hook   = 'class Application < Rails::Application\n',
-        file   = this.readFileAsString(path),
+        file   = wiring.readFileAsString(path),
         insert = '    config.autoload_paths += %W(#{config.root}/lib #{Rails.root}/app)\n' +
                  '    config.webpack = {\n' +
                  '       use_manifest: false,\n' +
@@ -224,7 +226,7 @@ module.exports = yeoman.generators.Base.extend({
   appJs: function() {
     console.log(magenta('Processing app js'));
     var path   = 'app/assets/javascripts/application.js',
-        file   = this.readFileAsString(path);
+        file   = wiring.readFileAsString(path);
 
     //modify file before insert
     file = file.replace("//= require turbolinks\n", '')
@@ -240,16 +242,22 @@ module.exports = yeoman.generators.Base.extend({
     this.write(path, file);
     this.template('app/main.js', 'app/frontend/javascripts/main.js');
     // this.template('app/home/home.js', 'app/frontend/javascripts/home/home.js');
+<<<<<<< HEAD
+    this.copy('app/test/home-test.js', 'app/frontend/javascripts/test/home-test.js');
+    this.copy('app/components.js, app/assets/javascripts/components.js');
+    this.copy('app/components/home.js.jsx, app/assets/javascripts/components/home.js.jsx')
+=======
     this.copy('app/tests/home-test.js', 'app/frontend/javascripts/test/home-test.js');
     this.copy('app/components.js', 'app/assets/javascripts/components.js');
     this.copy('app/components/home.js.jsx', 'app/assets/javascripts/components/home.js.jsx')
+>>>>>>> b363a6a... missing quotes
   },
 
   reactConfig: function() {
     console.log(magenta('Processing config/environments/development.rb'));
     var path   = 'config/environments/development.rb',
         hook   = 'Rails.application.configure do\n',
-        file   = this.readFileAsString(path),
+        file   = wiring.readFileAsString(path),
         insert = "  config.react.variant = :development\n  config.react.addons = true\n";
 
     if (file.indexOf(insert) === -1) {
@@ -259,7 +267,7 @@ module.exports = yeoman.generators.Base.extend({
     console.log(magenta('Processing config/environments/production.rb'));
     path   = 'config/environments/production.rb',
     hook   = 'Rails.application.configure do\n',
-    file   = this.readFileAsString(path),
+    file   = wiring.readFileAsString(path),
     insert = "  config.webpack[:use_manifest] = true\n  config.react.variant = :development\n  config.react.addons = true\n";
 
     if (file.indexOf(insert) === -1) {
@@ -271,7 +279,7 @@ module.exports = yeoman.generators.Base.extend({
     console.log(magenta('Processing config/routes.rb'));
     var path   = 'config/routes.rb',
         hook   = 'Rails.application.routes.draw do\n',
-        file   = this.readFileAsString(path),
+        file   = wiring.readFileAsString(path),
         insert = "  root 'application#index'\n";
 
     if (file.indexOf(insert) === -1) {
@@ -282,7 +290,7 @@ module.exports = yeoman.generators.Base.extend({
   gitIgnore: function() {
     console.log(magenta('Processing .gitignore'));
     var path   = '.gitignore',
-        file   = this.readFileAsString(path),
+        file   = wiring.readFileAsString(path),
         insert = "app/assets/javascripts/build\n" +
                  "node_modules\n";
 
@@ -303,7 +311,7 @@ module.exports = yeoman.generators.Base.extend({
     console.log(magenta('Update spec/rails_helper.rb for DatabaseCleaner and Grape api'));
     var path   = 'spec/rails_helper.rb',
         hook   = 'RSpec.configure do |config|\n',
-        file   = this.readFileAsString(path),
+        file   = wiring.readFileAsString(path),
         insert = '  config.include RSpec::Rails::RequestExampleGroup, type: :request, file_path: /spec\\/apis/\n' +
                  '  config.before(:suite) do\n' +
                  '    DatabaseCleaner.strategy = :transaction\n' +
@@ -332,7 +340,7 @@ module.exports = yeoman.generators.Base.extend({
     }
     var path   = 'app/assets/stylesheets/application.css',
         hook   = ' *= require_tree .\n',
-        file   = this.readFileAsString(path),
+        file   = wiring.readFileAsString(path),
         insert = ' *= require default\n' + extra + ' *= require_tree .\n';
 
     if (file.indexOf(insert) === -1) {

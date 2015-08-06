@@ -7,6 +7,7 @@ var chalk = require('chalk');
 var magenta = chalk.magenta;
 var shell = require('shelljs');
 
+
 module.exports = yeoman.generators.Base.extend({
   init: function () {
     this.on('end', function () {
@@ -241,8 +242,8 @@ module.exports = yeoman.generators.Base.extend({
     this.template('app/main.js', 'app/frontend/javascripts/main.js');
     // this.template('app/home/home.js', 'app/frontend/javascripts/home/home.js');
     this.copy('app/tests/home-test.js', 'app/frontend/javascripts/test/home-test.js');
-    this.copy('app/components.js', 'app/assets/javascripts/components.js');
-    this.copy('app/components/home.js.jsx', 'app/assets/javascripts/components/home.js.jsx')
+    this.copy('app/components.js, app/assets/javascripts/components.js');
+    this.copy('app/components/home.js.jsx, app/assets/javascripts/components/home.js.jsx')
   },
 
   reactConfig: function() {

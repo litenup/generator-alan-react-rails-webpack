@@ -7,6 +7,7 @@ var chalk = require('chalk');
 var magenta = chalk.magenta;
 var shell = require('shelljs');
 
+
 module.exports = yeoman.generators.Base.extend({
   init: function () {
     this.on('end', function () {

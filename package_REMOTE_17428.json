@@ -1,6 +1,10 @@
 {
   "name": "generator-alan-react-rails-webpack",
+<<<<<<< HEAD
+  "version": "0.4.3",
+=======
   "version": "0.4.8",
+>>>>>>> b363a6a... missing quotes
   "description": "Yeoman generator",
   "license": "MIT",
   "main": "app/index.js",
@@ -24,7 +28,8 @@
   ],
   "dependencies": {
     "yeoman-generator": "^0.19.0",
-    "chalk": "^1.0.0",
+    "html-wiring": "^1.1.0",
+    "chalk": "^0.5.0",
     "shelljs": "^0.3.0",
     "yosay": "^1.0.2"
   },

@@ -1,6 +1,6 @@
 {
   "name": "generator-alan-react-rails-webpack",
-  "version": "0.4.8",
+  "version": "0.4.0",
   "description": "Yeoman generator",
   "license": "MIT",
   "main": "app/index.js",
