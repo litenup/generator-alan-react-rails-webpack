@@ -37,7 +37,8 @@ Answer 'Yes' to all 'Overwrite' actions. Then, update 'config/database.yml' if y
 
 ### Javascript modules
 
-All javascript modules are placed in `app/frontend/javascripts` folder, which will be compiled into `app/assets/javascript/build`
+All react components following the convension of react-rails and are placed in `app/assets/javascripts/components`
+All other javascript modules are placed in `app/frontend/javascripts` folder, which will be compiled into `app/assets/javascript/build`
 folder. In addition, `app/assets/javascript/build` is appended to `.gitignore` (Webpack built bundles will be ignored and rebuilt every deployment).
 
 Control your application assets via [webpack](http://webpack.github.io/docs/) or [sprockets](https://github.com/sstephenson/sprockets).
@@ -276,12 +277,18 @@ $ bundle exec guard # to run the guard server and enjoy coding
 ```
 
 ## Testing
-Test files are placed in the same folder with component.
+Test files are placed in frontend/javascript/test
+
+Edit test files to require components from rails asset folder like this
 
 ```
-▾ home/
-    home-test.js
-    home.js*
+let Home = require('../../../assets/javascripts/components/home.js');
+```
+End each component with the following line:
+```
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = ComponentName;
+}
 ```
 
 Use iojs instead of node to run mocha test (See more [here](https://github.com/tmpvar/jsdom)). And update mocha config
@@ -309,14 +316,18 @@ application/
   |  |  |- images/
   |  |  |- javascripts/
   |  |  |  |- build/
-  |  |  |  |  |- page-module.bundle.js
+  |  |  |  |  |- main.bundle.js
+  |  |  |  |- components/
+  |  |  |  |  |- home.js.jsx
+  |  |  |  |  |- <react-components>
   |  |  |  |- application.js
+  |  |  |  |- components.js
   |  |  |- stylesheets/
   |  |  |  |- application.css
   |  |- frontend/
   |  |  |- javascripts/
-  |  |  |  |- <page-module-dependencies>/
-  |  |  |  |- <page-module>.js
+  |  |  |  |- test/
+  |  |  |  |- <test-module>.js
   |  |- controllers/
   |  |- helpers/
   |  |- mailers/
