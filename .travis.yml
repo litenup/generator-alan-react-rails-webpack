@@ -3,4 +3,4 @@ node_js:
   - '0.10'
 before_install:
   - currentfolder=${PWD##*/}
-  - if [ "$currentfolder" != 'generator-rails-react-webpack' ]; then cd .. && eval "mv $currentfolder generator-rails-react-webpack" && cd generator-rails-react-webpack; fi
+  - if [ "$currentfolder" != 'generator-alan-react-rails-webpack' ]; then cd .. && eval "mv $currentfolder generator-alan-react-rails-webpack" && cd generator-alan-react-rails-webpack; fi

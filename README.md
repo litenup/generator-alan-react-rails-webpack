@@ -1,15 +1,15 @@
-# generator-rails-react-webpack
+# generator-alan-react-rails-webpack [![Build Status](https://secure.travis-ci.org/litenup/generator-alan-react-rails-webpack.png?branch=master)](https://travis-ci.org/litenup/generator-alan-react-rails-webpack)
 
 > [Yeoman](http://yeoman.io) generator
 
-[![NPM](https://nodei.co/npm/generator-rails-react-webpack.png?downloads=true)](https://nodei.co/npm/generator-rails-react-webpack/)
+
 
 ## Getting Started
 
-To install `generator-rails-react-webpack` from npm, run:
+To install `generator-alan-react-rails-webpack` from npm, run:
 
 ```bash
-$ npm install -g generator-rails-react-webpack
+$ npm install -g generator-alan-react-rails-webpack
 ```
 
 ## Up and Running
